@@ -1,0 +1,33 @@
+-------必要なライブラリ----------
+Flask
+Tensorflow
+keras
+numpy
+
+その他必要なパッケージは都度pip install～でダウンロードしてください。
+
+-------システムの概要----------
+boar（イノシシ）、crow(カラス）、monkey(サル）の3つのフォルダに200枚程度の写真を用意。
+これらをTensorflowで機械学習し（h5ファイル）を作成。当h5ファイルをFlask上で読み込み、
+任意の画像をboar（イノシシ）、crow(カラス）、monkey(サル）のいずれかに判定するシステム
+
+-------利用方法----------
+作業１：animalai-data.zipの3つのフォルダにboar（イノシシ）、crow(カラス）、monkey(サル）の写真が入っているので解凍
+作業２：flask_chap5.zipを解凍。今回このflask_chap5をベースのディレクトリとする。作業１で作成した。boar、crow、monkey
+フォルダを、flask_chap5フォルダ内に格納
+作業３：”python gen_data_augmented.py” を実行。animal_aug.npy（numpyファイル）が作成される。
+作業４：”python animal_cnn_aug.py” を実行。作業3で作成したanimal_aug.npyと、boar～等に格納された写真を材料に、機械学習が行われる。1時間程度かかるかもしれないが、最終的にanimal_cnn_aug.h5が出力される。
+作業5 ：animal_cnn_aug.h5を使いFLASKでWEBサービス構築。FLASKのソースコードが入ったpredictfile.pyの実行方法は以下
+※animal_cnn_aug.h5とboar～等に格納された写真を元に、機械学習を実行。任意のファイルを判定する。
+
+activate ●●　で環境を選択
+※FLASK関連ファイル　predictfile.py
+set FLASK_APP=predictfile.py
+python -m flask run
+
+http://127.0.0.1:5000/ 
+うまくいけば、ローカルサーバーに反映。
+
+
+
+
